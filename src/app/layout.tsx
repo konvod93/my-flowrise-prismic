@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { Nunito, Nunito_Sans } from 'next/font/google'
 import { createClient } from '@/prismicio'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 
 const nunito = Nunito({
@@ -36,15 +37,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={clsx(nunito.variable, nunitoSans.variable)}> 
-      <Header />       
+      <body className={clsx(nunito.variable, nunitoSans.variable)}>
+        <Header />
         {children}
-        <footer>Footer!</footer>
-        </body>
+        <Footer />
+      </body>
     </html>
-  )
+  );
 }
