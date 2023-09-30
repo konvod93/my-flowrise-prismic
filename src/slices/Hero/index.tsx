@@ -2,6 +2,7 @@ import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/components/Bounded";
+import Button from "@/components/Button";
 
 /**
  * Props for `Hero`.
@@ -38,13 +39,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             ),
           }}
         />
-        <PrismicNextLink
+        <Button
           field={slice.primary.button_link}
-          className="block w-fit bg-cyan-700 hover:bg-cyan-800 
-      transition-color duration-200 ease-in-out py-3 px-12 rounded-full font-display text-white font-bold text-base tracking-wider mb-8 md:mb-10"
+          className="mb-8 md:mb-10"
         >
           {slice.primary.button_text}
-        </PrismicNextLink>
+        </Button>
         <PrismicNextImage
           field={slice.primary.image}
           className="drop-shadow-xl max-w-4xl w-full"
