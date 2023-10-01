@@ -8,8 +8,6 @@ export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("homepage");
 
-  return <div className="text-red-500">It worked!</div>
-
   return <SliceZone slices={page.data.slices} components={components} />;
 }
 
