@@ -103,6 +103,32 @@
 						}
 					]
 				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"icon",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Select",
+							"value": "bargraph"
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"icon",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Select",
+							"value": "hourglass"
+						}
+					]
+				]
 			}
 		]
 	}
