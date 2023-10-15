@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | FeaturesSlice
+  | TestinomialsSlice
+  | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -171,7 +174,75 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | SettingsDocument;
+/**
+ * Content for Testinomial documents
+ */
+interface TestinomialDocumentData {
+  /**
+   * Name field in *Testinomial*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomial.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Job Title field in *Testinomial*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomial.job_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  job_title: prismic.KeyTextField;
+
+  /**
+   * Quote field in *Testinomial*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomial.quote
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  quote: prismic.RichTextField;
+
+  /**
+   * Avatar field in *Testinomial*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomial.avatar
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+}
+
+/**
+ * Testinomial document from Prismic
+ *
+ * - **API ID**: `testinomial`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestinomialDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TestinomialDocumentData>,
+    "testinomial",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | HomepageDocument
+  | SettingsDocument
+  | TestinomialDocument;
 
 /**
  * Primary content in *Features → Primary*
@@ -403,6 +474,66 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceHorizontal;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Primary content in *Testinomials → Primary*
+ */
+export interface TestinomialsSliceDefaultPrimary {
+  /**
+   * Heading field in *Testinomials → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomials.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *Testinomials → Items*
+ */
+export interface TestinomialsSliceDefaultItem {
+  /**
+   * Testinomial field in *Testinomials → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testinomials.items[].testinomial
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  testinomial: prismic.ContentRelationshipField<"testinomial">;
+}
+
+/**
+ * Default variation for Testinomials Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestinomialsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TestinomialsSliceDefaultPrimary>,
+  Simplify<TestinomialsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Testinomials*
+ */
+type TestinomialsSliceVariation = TestinomialsSliceDefault;
+
+/**
+ * Testinomials Shared Slice
+ *
+ * - **API ID**: `testinomials`
+ * - **Description**: Testinomials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestinomialsSlice = prismic.SharedSlice<
+  "testinomials",
+  TestinomialsSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -419,6 +550,8 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      TestinomialDocument,
+      TestinomialDocumentData,
       AllDocumentTypes,
       FeaturesSlice,
       FeaturesSliceDefaultPrimary,
@@ -431,6 +564,11 @@ declare module "@prismicio/client" {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceHorizontal,
+      TestinomialsSlice,
+      TestinomialsSliceDefaultPrimary,
+      TestinomialsSliceDefaultItem,
+      TestinomialsSliceVariation,
+      TestinomialsSliceDefault,
     };
   }
 }

@@ -18,6 +18,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "features": {
+              "type": "SharedSlice"
+            },
+            "testinomials": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }
