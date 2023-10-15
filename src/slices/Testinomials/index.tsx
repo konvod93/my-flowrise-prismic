@@ -8,7 +8,7 @@ import { PrismicNextImage } from "@prismicio/next";
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => (
-    <Heading as="h2" size="xl" className="md:mb-8 mb-4 mt-12 first:mt-0 last:mb-0">
+    <Heading as="h2" size="md" className="text-center mb-9 font-semi">
       {children}
     </Heading>
   ),
@@ -48,16 +48,16 @@ const Testinomials = async ({ slice }: TestinomialsProps): Promise<JSX.Element> 
       data-slice-variation={slice.variation}
     >
       <PrismicRichText components={components} field={slice.primary.heading} />
-      <div>
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
         {testinomials.map((item, index) => item && (
-          <div key="index">
+          <div key={index} className="border bg-white shadow-lg rounded-lg px-8 md:px-14 py-10 md:py-16 grid content-between">
             <PrismicRichText field={item.data.quote} components={components} />
-            <div>
+            <div className="flex items-center">
               <PrismicNextImage width={56} height={56} field={item.data.avatar}  className="rounded-full mr-4"  imgixParams={{ar: "1:1", fit: "crop"}}/>
             </div>
             <div>
-              <p>{item.data.name}</p>
-              <p>{item.data.job_title}</p>
+              <p className="text-base font-medium text-slate-700">{item.data.name}</p>
+              <p className="text-base text-slate-600">{item.data.job_title}</p>
             </div>
           </div>
         ))}
