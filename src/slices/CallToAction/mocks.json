@@ -1,0 +1,43 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Rough"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eu sint incididunt eu et incididunt enim fugiat laborum ad amet pariatur elit sit consectetur veniam. Quis duis quis veniam quis pariatur in minim exercitation. Magna laborum velit sunt aliquip ex amet excepteur commodo id veniam."
+						}
+					}
+				]
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "go",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
