@@ -43,9 +43,12 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       data-slice-variation={slice.variation}
     >
       <PrismicRichText field={slice.primary.heading} components={components} />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 max-w-5xl gap-x-8 gap-y-12 mx-auto sm:place-items-start place-items-center">
+      <div className=" grid sm:grid-cols-2 lg:grid-cols-4 max-w-5xl gap-x-8 gap-y-12 mx-auto sm:place-items-start place-items-center">
         {slice.items.map((item, index) => (
-          <div key={index} className="max-w-xs grid sm:place-items-start place-items-center">
+          <div
+            key={index}
+            className="max-w-xs grid sm:place-items-start place-items-center"
+          >
             {item.icon && <div className="mb-5">{icons[item.icon]}</div>}
             <PrismicRichText components={components} field={item.title} />
             <PrismicRichText components={components} field={item.description} />
