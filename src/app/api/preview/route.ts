@@ -4,7 +4,7 @@ import { redirectToPreviewURL } from "@prismicio/next";
 
 import { createClient } from "../../../prismicio";
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<any> {
   const client = createClient();
 
   draftMode().enable();
